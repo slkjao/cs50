@@ -1,0 +1,70 @@
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main()
+{
+    char number[20];
+    int lenght, soma = 0, resultadoMultiplicacao, conversaoParaInt, booleanCardVerification, valid;
+
+    do
+    {
+        valid = 1;
+        printf("Number: ");
+        scanf("%19s", number);
+        lenght = strlen(number);
+        if(lenght < 13 || lenght > 16)
+        {
+            valid = 0;
+        }
+
+        for (int i = 0; i < lenght; i++){
+            if(!isdigit(number[i])){
+                valid = 0;
+                break;
+            }
+        }
+    } while (!valid);
+
+    for(int i = 0; i < lenght; i = i+2)
+    {
+        conversaoParaInt = number[i] - '0';
+        conversaoParaInt *= 2;
+        if(conversaoParaInt> 9)
+        {
+            soma += conversaoParaInt / 10;
+            soma += conversaoParaInt % 10;
+        }
+        else
+        {
+            soma += conversaoParaInt;
+        }
+    }
+
+    for(int i = 1; i < lenght; i = i + 2)
+    {
+        conversaoParaInt = number[i] - '0';
+        soma += conversaoParaInt;
+    }
+
+    if(soma % 10 == 0)
+    {
+        booleanCardVerification = 1;
+    }
+
+    if(booleanCardVerification == 1)
+    {
+        if(number[0] == '3' && number[1] == '4' || number[1] == '7')
+        {
+            printf("AMEX");
+        }
+        else if(number[0] == '5' && number[1] - '0' > 0 && number[1] - 0 < 6)
+        {
+            printf("MASTERCARD");
+        }
+        else if(number[0] == '4')
+        {
+            printf("VISA");
+        }
+    }
+}
