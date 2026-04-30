@@ -1,0 +1,150 @@
+
+#include <stdio.h>
+int main()
+{
+    int bills = 0, bill2 = 0, bill5 = 0, bill10 = 0, bill20 = 0, bill50 = 0, bill100 = 0;
+    int coins = 0, coin1 = 0, coin5 = 0, coin10 = 0, coin25 = 0, coin50 = 0, coin100 = 0;
+    double purchaseValue, payedValue, change;
+    printf("Enter the purchase value: \n");
+    scanf("%lf", &purchaseValue);
+    printf("Enter the payed value: \n");
+    scanf("%lf", &payedValue);
+    change = payedValue - purchaseValue;
+    printf("Change: $%.2f\n", change);
+    change *= 100;
+    int c = (int)(change + 0.5);
+
+    do
+    {
+        if(c >= 200)
+        {
+            if(c >= 10000)
+            {
+                bill100++;
+                c -= 10000;
+            }
+            else if(c >=5000)
+            {
+                bill50++;
+                c -= 5000;
+            }
+            else if(c >=2000)
+            {
+                bill20++;
+                c -= 2000;
+            }
+            else if(c >= 1000)
+            {
+                bill10++;
+                c -= 1000;
+            }
+            else if(c >= 500)
+            {
+                bill5++;
+                c -= 500;
+            }
+            else if(c >= 200)
+            {
+                bill2++;
+                c -= 200;
+            }
+            bills++;
+        }
+        else
+        {
+            if(c >= 100)
+            {
+                coin100++;
+                c -= 100;
+            }
+            else if(c >= 50)
+            {
+                coin50++;
+                c -= 50;
+            }
+            else if (c >= 25)
+            {
+                coin25++;
+                c -= 25;
+            }
+            else if (c >= 10)
+            {
+                coin10++;
+                c -= 10;
+            }
+            else if (c >= 5)
+            {
+                coin5++;
+                c -= 5;
+            }
+            else if (c >= 1)
+            {
+                coin1++;
+                c -= 1;
+            }
+            coins++;
+        }
+    }
+    while(c > 0);
+
+    printf("\nBills: \n");
+
+    if (bill100 > 0)
+    {
+        printf("$100 = %d\n", bill100);
+    }
+    if (bill50> 0)
+    {
+        printf("$50 = %d\n", bill50);
+    }
+    if (bill20 > 0)
+    {
+        printf("$20 = %d\n", bill20);
+    }
+    if (bill10 > 0)
+    {
+        printf("$10 = %d\n", bill10);
+    }
+    if (bill5 > 0)
+    {
+        printf("$5 = %d\n", bill5);
+    }
+    if (bill2 > 0)
+    {
+        printf("$2 = %d\n", bill2);
+    }
+    if(bills == 0){
+        printf("No bills needed\n");
+    }
+
+    printf("\nCoins: \n");
+
+    if(coin100 > 0)
+    {
+        printf("$1 = %d\n", coin100);
+    }
+    if(coin50 > 0)
+    {
+        printf("$.50 = %d\n", coin50);
+    }
+    if(coin25 > 0)
+    {
+        printf("$.25 = %d\n", coin25);
+    }
+    if(coin10 > 0)
+    {
+        printf("$.10 = %d\n", coin10);
+    }
+    if(coin5 > 0)
+    {
+        printf("$.05 = %d\n", coin5);
+    }
+    if(coin1 > 0)
+    {
+        printf("$.01 = %d\n", coin1);
+    }
+    if(coins == 0){
+        printf("No coins needed\n");
+    }
+
+}
