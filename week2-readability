@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char text[2000];
+    int i = 0, letras = 0, frases = 0, palavras = 1;
+    double mediaLetras, mediaFrases, index;
+
+    printf("Digite um texto: ");
+    fgets(text, sizeof(text), stdin);
+
+    while(text[i] != '\0')
+    {
+        char c = text[i];
+
+        if(c >= 65 && c <= 90 || c >= 97 && c <= 122)
+        {
+            letras++;
+        }
+
+        if(c == ' '){
+            palavras++;
+        }
+
+        if(c == '!' || c == '.' || c == '?'){
+            if(text[i+1] == ' ' || text[i+1] == '\0' || text[i+1] == '\n'){
+                frases++;
+            }
+        }
+        i++;
+    }
+
+    mediaFrases = ((double) frases / palavras) * 100.0;
+    mediaLetras = ((double) letras / palavras) * 100.0;
+    index = 0.0588 * mediaLetras - 0.296 * mediaFrases - 15.8;
+
+    printf("\nLetras:%d", letras);
+    printf("\nFrases:%d", frases);
+    printf("\nPalavras:%d", palavras);
+    printf("\n\nMedia letras: %.2f", mediaLetras);
+    printf("\nMedia frases: %.2f", mediaFrases);
+    printf("\nIndex: %f", index);
+
+    return 0;
+}
