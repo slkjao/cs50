@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char plainText[100];
+    int key, i = 0;
+
+    printf("Key: ");
+    scanf("%d", &key);
+    getchar();
+
+    printf("plaintext: ");
+    fgets(plainText, sizeof(plainText), stdin);
+
+    while(plainText[i] != '\0')
+    {
+        char c = plainText[i];
+        if(c >= 65 && c <= 90)
+        {
+            plainText[i] = ((c - 65 + key) % 26) + 65;
+        }
+        else if(c >= 97 && c <= 122)
+        {
+            plainText[i] = ((c - 97 + key) % 26) + 97;
+        }
+
+        i++;
+    }
+
+    printf("ciphertext: %s", plainText);
+
+
+    return 0;
+}
